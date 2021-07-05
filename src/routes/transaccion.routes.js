@@ -31,5 +31,19 @@ router.post('/addDetalleVenta', (req, res) => {
     });
 });
 
+// Agregar Reserva Libro
+router.post('/addReserva', (req, res) => {
+
+    const { libroId, clienteId, fechaReserva } = req.body;
+    const query = 'CALL nuevaReserva(?,?,?)';
+    mysqlConnection.query(query, [libroId, clienteId, fechaReserva], (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log(err);
+        }
+    });
+});
+
 
 module.exports = router;

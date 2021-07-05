@@ -27,7 +27,7 @@ router.get('/getallParametros', (req, res) => {
     if (id == 0 || id == null) {
         query = `select * from parametro`
     } else {
-        query = `select * from parametro where key = '?'`;
+        query = `select * from parametro where parametroId = ?`;
     }
 
     mysqlConnection.query(query, [id], (err, rows, fields) => {

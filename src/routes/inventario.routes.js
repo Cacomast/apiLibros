@@ -17,7 +17,8 @@ router.get('/getInventario', (req, res) => {
 // Obtener stock de libros por sucursal
 router.get('/getInventarioSucursal', (req, res) => {
     const id = req.query.id;
-    mysqlConnection.query('SELECT * FROM view_getinventariosucursal where libroId = ?', [id], (err, rows, fields) => {
+    const query = 'SELECT * FROM view_getinventariosucursal where libroId = ?';
+    mysqlConnection.query(query, [id], (err, rows, fields) => {
         if (!err) {
             res.json(rows);
         } else {
